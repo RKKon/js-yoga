@@ -1,5 +1,5 @@
 function timer() {
-    let deadLine = '2021-12-19';
+    let deadLine = '2022-11-29';
 
     function gitTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -71,4 +71,4 @@ function timer() {
     });
 }
 
-module.exports = timer;
+export default timer;

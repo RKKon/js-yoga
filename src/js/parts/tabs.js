@@ -43,4 +43,4 @@ function tabs() {
     tabMore(); */
 }
 
-module.exports = tabs;
+export default tabs;
