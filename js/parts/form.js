@@ -1,88 +1,68 @@
-function form() {
-    let message = {
-        loading: 'Loading...',
-        success: 'Thank you! Soon we will call you.',
-        failure: 'Sorry something went wrong', 
-    };
+import ThanksMessage from "./ThanksMessage.js";
 
-    let form = document.querySelector('.main-form'),
-        input = form.getElementsByTagName('input'),
-        statusMessage = document.createElement('div'),
-        formContacts = document.querySelector('#form');
-        
-        statusMessage.classList.add('status');
+const Form = () => {
+  const form = document.querySelector(".main-form");
+  const input = form.getElementsByTagName("input");
+  const formContacts = document.querySelector("#form");
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        form.appendChild(statusMessage);
-
-        let request = new XMLHttpRequest();
-        request.open('POST', 'server.php');
-        //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //вместо JSON
-        request.setRequestHeader('Content-type', 'application/json; charset=utf-8'); 
-
-        let formData = new FormData(form);
-
-        let obj = {}; // используется при др манипуляциях но и для JSON
-        formData.forEach(function(value, key) {
-            obj[key] = value;
-        });
-        let json = JSON.stringify(obj); 
-
-        request.send(json);
-
-        // Для наблюдения за изменениями сос-ния нашего запроса
-        request.addEventListener('readystatechange', function () {
-            if (request.readyState < 4) {
-                statusMessage.innerHTML = message.loading;
-            } else if (request.readyState === 4 && request.status == 200) {
-                statusMessage.innerHTML = message.success;
-                //     let data = JSON.parse(request.response); 
-            } else {
-                statusMessage.innerHTML = message.failure;
-            }
-        });
-
-        for (let i = 0; i < input.length; i++) {
-            input[i].value = '';
-        }
+  /* const statusMessage = document.createElement("div");
+  const message = {
+    loading: "Loading...",
+    success: "Thank you! Soon we will call you.",
+    failure: "Sorry something went wrong",
+  };
+  statusMessage.classList.add("status");
+  const watchStatusRequest = (request = request) => {
+    // Для наблюдения за изменениями сос-ния нашего запроса
+    request.addEventListener("readystatechange", function () {
+      if (request.readyState < 4) {
+        statusMessage.innerHTML = message.loading;
+      } else if (request.readyState === 4 && request.status == 200) {
+        statusMessage.innerHTML = message.success;
+        //     let data = JSON.parse(request.response);
+      } else {
+        statusMessage.innerHTML = message.failure;
+      }
     });
+  }; */
 
-    formContacts.addEventListener('submit', function(event) {
-        event.preventDefault();
-        formContacts.appendChild(statusMessage);
+  const sendForm = (typeForm) => {
+    typeForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      //   typeForm.appendChild(statusMessage); //! if no use messages
 
-        let request = new XMLHttpRequest();
-        request.open('POST', 'server.php');
-        //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //вместо JSON
-        request.setRequestHeader('Content-type', 'application/json; charset=utf-8'); 
+      let request = new XMLHttpRequest();
+      request.open("POST", "server.php");
+      //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); //вместо JSON
+      request.setRequestHeader("Content-type", "application/json; charset=utf-8");
 
-        let formData = new FormData(form);
+      let formData = new FormData(typeForm);
 
-        let obj = {}; // используется при др манипуляциях но и для JSON
-        formData.forEach(function(value, key) {
-            obj[key] = value;
-        });
-        let json = JSON.stringify(obj); 
+      let obj = {}; // используется при др манипуляциях но и для JSON
+      formData.forEach(function (value, key) {
+        obj[key] = value;
+      });
+      let json = JSON.stringify(obj);
 
-        request.send(json);
+      request.send(json);
 
-        // Для наблюдения за изменениями сос-ния нашего запроса
-        request.addEventListener('readystatechange', function () {
-            if (request.readyState < 4) {
-                statusMessage.innerHTML = message.loading;
-            } else if (request.readyState === 4 && request.status == 200) {
-                statusMessage.innerHTML = message.success;
-                //     let data = JSON.parse(request.response); 
-            } else {
-                statusMessage.innerHTML = message.failure;
-            }
-        });
+      input[0].value = ""; // clear phone input
 
-        for (let i = 0; i < input.length; i++) {
-            input[i].value = '';
-        }
+      if (input.value !== "") {
+        ThanksMessage();
+      }
+      // form with email and phone
+      const email = document.querySelector('input[name="email"]');
+      const phoneWithEmail = document.querySelector('input[name="phone_email"]');
+      email.value = "";
+      phoneWithEmail.value = "";
+
+      //   watchStatusRequest(request); //! if no use messages
     });
-}
+  };
 
-export default form;
+  sendForm(form);
+  sendForm(formContacts);
+};
+
+export default Form;

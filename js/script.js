@@ -1,24 +1,16 @@
-'use strict';
-import calc from './parts/calc.js';
-import form from './parts/form.js';
-import slider from './parts/slider.js';
-import tabs from './parts/tabs.js';
-import timer from './parts/timer.js';
+"use strict";
+import Calc from "./parts/calc.js";
+import Form from "./parts/form.js";
+import Slider from "./parts/slider.js";
+import Tabs from "./parts/tabs.js";
+import Timer from "./parts/timer.js";
+import Modal from "./parts/modal.js";
 
-window.addEventListener('DOMContentLoaded', function() {
-    //const calc = import('./parts/calc.js');
-    // const form = import('./parts/form.js');
-    // const slider = import('./parts/slider.js');
-    // const tabs = import('./parts/tabs.js');
-    // const timer = import('./parts/timer.js');
-
-    slider();
-
-    calc();
-
-    form();
-    
-    tabs();
-    
-    timer();
+window.addEventListener("DOMContentLoaded", function () {
+  Slider();
+  Calc();
+  Form();
+  Tabs();
+  Timer("2023-12-12");
+  Modal();
 });
