@@ -38,6 +38,40 @@ const Tabs = () => {
     }
   });
 
+  infoHeader.addEventListener("keydown", function (event) {
+    let target = event.target;
+    if (event.key === "Enter") {
+      if (target && target.classList.contains("info-header-tab")) {
+        for (let i = 0; i < headerTab.length; i++) {
+          if (target == headerTab[i]) {
+            hideTabContent(0);
+            showTabContent(i);
+            showModalPhone(tabsBtn[i]);
+            break;
+          }
+        }
+      }
+    }
+  });
+
+  // При использование клавиатуры и Tabs добавляем hover и убираем hover когда вне фокуса
+  document.querySelectorAll('[tabindex]').forEach(element => {
+    if (element.classList.contains('menu_focus') ||
+      element.id === 'select' ||
+      element.tagName === 'BUTTON') {
+
+      element.addEventListener('focus', () => element.classList.add('tab_box_hover'))
+    }
+
+    if (element.classList.contains('focus_social')) {
+      element.addEventListener('focus', () => element.parentElement.classList.add('tab_box_hover'))
+    }
+
+    element.addEventListener('blur', () => element.classList.remove('tab_box_hover'));
+    element.addEventListener('blur', () => element.parentElement.classList.remove('tab_box_hover'));
+  })
+
+
   /* let descriptionBtn = document.querySelector('.description-btn');    
     function tabMore() {
         descriptionBtn.addEventListener('click', function () {

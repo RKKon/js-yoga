@@ -30,6 +30,12 @@ export const closeModalPhone = () => {
     }
   });
 
+  document.addEventListener("keydown", function (e) { // Esc on keyboard to close
+    if (e.code === "Escape" && overlay.style.display === "block") {
+      closeThisModal();
+    }
+  });
+
   btnEnterPhone.addEventListener("click", () => {
     if (!(input.value.trim() === "")) {
       closeThisModal();

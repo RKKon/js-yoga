@@ -218,7 +218,8 @@ header ul li:before {
   transition: 0.4s;
 }
 
-.content .info-header-tab:hover:after {
+.content .info-header-tab:hover:after,
+.content .info-header-tab:focus:after {
   width: 60%;
 }
 
@@ -862,5 +863,9 @@ header ul li:before {
 }
 
 .overlay .popup-form__btn:hover {
+  box-shadow: 0 0 10px #c78030;
+}
+
+.tab_box_hover {
   box-shadow: 0 0 10px #c78030;
 }
