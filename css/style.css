@@ -869,3 +869,7 @@ header ul li:before {
 .tab_box_hover {
   box-shadow: 0 0 10px #c78030;
 }
+
+.slider_focus {
+  box-shadow: 0 0 50px #c78030;
+}
