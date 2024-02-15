@@ -58,7 +58,8 @@ const Tabs = () => {
   document.querySelectorAll('[tabindex]').forEach(element => {
     if (element.classList.contains('menu_focus') ||
       element.id === 'select' ||
-      element.tagName === 'BUTTON') {
+      element.tagName === 'BUTTON' ||
+      element.classList.contains('popup-form__input')) {
 
       element.addEventListener('focus', () => element.classList.add('tab_box_hover'))
     }

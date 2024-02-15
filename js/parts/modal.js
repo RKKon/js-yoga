@@ -3,6 +3,7 @@ import ThanksMessage from "./ThanksMessage.js";
 export const showModalPhone = (btnGetSelector, overlaySelector = ".overlay") => {
   btnGetSelector.addEventListener("click", function (e) {
     document.querySelector(overlaySelector).style.display = "block";
+    document.querySelector(".popup-form__input").focus();
     this.classList.add(".more-splash");
     document.body.style.overflow = "hidden"; //при модальном окне нельзя прокручивать стр на сайте(if need
   });

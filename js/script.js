@@ -11,6 +11,6 @@ window.addEventListener("DOMContentLoaded", function () {
   Calc();
   Form();
   Tabs();
-  Timer("2023-12-12");
+  Timer("2024-12-12");
   Modal();
 });
